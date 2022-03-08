@@ -8,35 +8,35 @@ Check you cpu For AES instructions and also the Architecture We need ARMV8 versi
 ```shell
 lscpu
 ```
-
+Instal git:
 ```shell
 pkg install git -y
 ```
-
+instal edit script:
+```shell
+pkg install automake build-essential curl git gnupg openssl nano -y
+```
+connect to github:
 ```shell
 pkg install github -y
 ```
-
+-opsional-
 ```shell
 pkg up -y
 ```
-
+Instal wget:
 ```shell
 pkg install wget -y
-```
-
-```shell
-cd ~
-```
-
-```shell
-cd ubuntu
 ```
 
 >The main purpose of PRoot is to run the Linux distributions inside Termux without having to root the device.
 
 ```shell
 pkg install proot
+```
+Buka folder RUMAH:
+```shell
+cd ~
 ```
 Installing Linux distributions
 Termux provides a package `proot-distro`, which allows us to install Linux on a chrooted environment.
