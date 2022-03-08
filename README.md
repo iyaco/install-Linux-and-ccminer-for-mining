@@ -1,7 +1,7 @@
 # install-Linux-and-ccminer-for-mining
 mining for ccminer to android
 ```shell
-pkg update && pkg upgrade -y
+pkg update -y && pkg upgrade -y
 ```
 Check you cpu For AES instructions and also the Architecture We need ARMV8 version
 
