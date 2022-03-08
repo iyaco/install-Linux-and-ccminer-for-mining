@@ -1,26 +1,19 @@
 # install-Linux-and-ccminer-for-mining
 mining for ccminer to android
+Perbarui termux:
 ```shell
 pkg update -y && pkg upgrade -y
 ```
-Check you cpu For AES instructions and also the Architecture We need ARMV8 version
-
+Periksa cpu Anda Untuk instruksi AES dan juga Arsitektur Kami membutuhkan versi ARMV8
+jalankan " lscpu " dan cari aes, pmull, dan armv8/aarch64
 ```shell
 lscpu
-```
-Instal git:
-```shell
-pkg install git -y
-```
-instal edit script:
-```shell
-pkg install automake build-essential curl git gnupg openssl nano -y
 ```
 connect to github:
 ```shell
 pkg install github -y
 ```
--opsional-
+- perbaiki yang rusak kalo E warna merah -
 ```shell
 pkg up -y
 ```
@@ -28,81 +21,56 @@ Instal wget:
 ```shell
 pkg install wget -y
 ```
-
->The main purpose of PRoot is to run the Linux distributions inside Termux without having to root the device.
-
+>Tujuan utama PRoot adalah menjalankan distribusi Linux di dalam Termux tanpa harus me-root perangkat.
 ```shell
-pkg install proot
+pkg install proot -y
+```
+Instal git:
+```shell
+pkg install git -y
 ```
 Buka folder RUMAH:
 ```shell
 cd ~
 ```
+```shell
+cd ubuntu
+```
 Installing Linux distributions
-Termux provides a package `proot-distro`, which allows us to install Linux on a chrooted environment.
-proot-distro takes care of management of the Linux distributions inside Termux ,Install this utility by executing.
-
 ```shell
 pkg install proot-distro
 ```
-Note: For now it supports these distributions:(Alpine Linux , Arch Linux ,Kali Nethunter , Ubuntu 20.04 ) for this example we are using ubuntu-20.04
-
+Catatan: Untuk saat ini mendukung distribusi ini:(Alpine Linux , Arch Linux ,Kali Nethunter , Ubuntu)
 ```shell
-proot-distro install ubuntu-20.04
+proot-distro install ubuntu
 ```
-Note: For now it supports these distributions:(Alpine Linux , Arch Linux ,Kali Nethunter , Ubuntu 20.04 ) for this example we are using ubuntu-20.04
-
-To login
-
+Untuk login :
 ```shell
-proot-distro login ubuntu-20.04
+proot-distro login ubuntu
 ```
-The picture show that we are logged in ubuntu-20.04
-Update system packages
-
+Perbarui paket sistem: 
 ```shell
 apt-get update && apt-get upgrade -y
 ```
->all the following instructions can be found on the miner repository.
-Install additional package and dependencies:
 
-```shell
-apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential git nano
-```
+INSTALL CCMINER
 
-_____ccminer
+Ikuti petunjuk langkah demi langkah
 
-## Quick Guide on Android Mining For VerusCoin Users
+1- Unduh dan instal Termux dari F-droid Disini {:target="_blank"}
 
+atau dari bagian rilis Github di bawah “Aset” {:target="_blank"}
 
-Their are already some community Miners applications out for I0S and Android that save you time and worth a try
+Setelah instalasi berhasil, luncurkan aplikasi. Kami akan menjalankan semua perintah di dalam jendela termux shell jadi tetap buka sampai akhir kompilasi.
 
-- Android :
- 
-`VerusMiner9000` For Android smatphone and tablettes by @shmutalov aka Lukeisky Get it [Here](https://docs.verus.io/economy/start-mining.html#mobile){:target="\_blank"} Or [Here](https://github.com/shmutalov/VerusMiner9000/releases){:target="\_blank"}
-
-The second methode is by compiling ccminer on Android  without any ch-rooted Linux distribution ,using a Terminal emulator Termux
-
-Follow the step by step instructions
-
-1- Download and install Termux 
-
-from the [Github release section under “Asset”](https://github.com/termux/termux-app/releases){:target="\_blank"}
-
-After a successful install launch the application We are going to Run all the commands inside the termux shell Window so keep it open until the end of compilation.
-
-2- Install additional packages
-
-  ```shell
-  pkg install automake build-essential curl git gnupg openssl nano
-  ```
+2- Instal paket tambahan
  ```shell
-apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev
-automake autotools-dev build-essential
+ pkg install automake build-essential curl git gnupg openssl nano -y
+ ```
+```shell
+apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
 ```
-
-*if after this command you get this error :
-
+jika setelah perintah ini Anda mendapatkan kesalahan ini:
 ```shell
 Package libjansson-dev is not available, but is referred to by another package. 
 This may mean that the package is missing, has been obsoleted, or is only available 
@@ -112,44 +80,39 @@ E: Unable to locate package libssl-dev
 E: Package ‘libjansson-dev’ has no installation candidate 
 E: Unable to locate package autotools-dev
 ```
-
-just remove them from the command and install the available or suggested ones like so
-
+hapus saja dari perintah dan instal yang tersedia atau yang disarankan seperti itu
 ```shell
 apt-get install  libjansson automake build-essential
 ```
-this may not work on all systems just try to read the ouput error on the terminal and do some search
+ini mungkin tidak berfungsi di semua sistem, coba baca kesalahan keluaran di terminal dan lakukan pencarian
 
-3 - Clone the ccminer git repo (ARM branch):
-
+3 - Mengkloning ccminer git repo (cabang ARM):
 ```shell
-git clone 
---single-branch -b ARM https://github.com/monkins1010/ccminer.git 
-&& cd ccminer
+git clone --single-branch -b ARM https://github.com/monkins1010/ccminer.git
 ```
-if you get no errors then you end on the ccminer folder,
-
-4 - Make Scripts Executables
-
-```ruby
+buKa folder ccminer
+```shell
+cd ccminer
+```
+4 - Kemudian cd ke folder “ ccminer/ ” dan buat file 'build.sh' , 'configure.sh' dan 'autogen.sh' dapat dieksekusi menggunakan perintah ini dalam satu baris:
+```shell
 chmod +x build.sh && chmod +x configure.sh && chmod +x autogen.sh
 ```
-
-6 -buid the miner binarie
-
+5- kemudian dapat menjalankan skrip
 ```shell
 ./build.sh
 ```
-
-if all go fine and End no errors we should find on the folder a fresh ccminer binaries ready for use .
-
+edit file “ run ” yang terletak di Folder ccminer
 ```shell
 nano run
 ```
+Ubah Pool_url , Alamat penambangan dan Nomor utas CPU , untuk menyimpan CTRL+x , tanggapi dengan Y dan tekan Enter
+./ccminer -a verus -o stratum+tcp://Pool_URL:PORT -u MINING_Address.WORKER_NAME -p x -t THREADS NUMBERS
+contoh:
 ./ccminer -a verus -o stratum+tcp://verushash.asia.mine.zergpool.com:3300 -u D6Q9is8yhcH5wrazZ12BNZM1ZUuxrZUdpt -p  c=DOGE,mc=VRSC,refcode=74e6aace8dfdab25951017617a86e3fd,ID=iYaco -t 5
-
 CTRL-X + Y ENTER (save)
 
+untuk Mulai menambang cukup keluarkan perintah
 ```shell
-./rum
+./run
 ```
