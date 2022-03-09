@@ -2,7 +2,7 @@
 mining for ccminer to android
 Perbarui termux:
 ```shell
-pkg update -y && pkg upgrade -y
+apt-get update && apt-get upgrade -y
 ```
 Periksa cpu Anda Untuk instruksi AES dan juga Arsitektur Kami membutuhkan versi ARMV8
 jalankan " lscpu " dan cari aes, pmull, dan armv8/aarch64
@@ -11,46 +11,76 @@ lscpu
 ```
 connect to github:
 ```shell
-pkg install github -y
+apt-get install github -y
 ```
 - perbaiki yang rusak kalo E warna merah -
 ```shell
-pkg up -y
+apt-get up -y
 ```
-Instal wget:
+instal wget
 ```shell
-pkg install wget -y
+apt-get install wget -y
+```
+instal git
+```shell
+apt-get install git -y
+```
+instal make
+```shell
+apt-get install make -y
+```
+instal cmake
+```shell
+apt-get install cmake -y
+```
+instal php
+```shell
+apt-get install php -y
+```
+instal nano
+```shell
+apt-get install nano -y
+```
+instal clone
+```shell
+apt-get install clone -y
+```
+instal prot
+```shell
+apt-get install proot -y
 ```
 >Tujuan utama PRoot adalah menjalankan distribusi Linux di dalam Termux tanpa harus me-root perangkat.
-```shell
-pkg install proot -y
-```
-Instal git:
-```shell
-pkg install git -y
-```
-Buka folder RUMAH:
+Go to HOME folder:
 ```shell
 cd ~
 ```
+Download script:
 ```shell
-cd ubuntu
+git clone https://github.com/MFDGaming/ubuntu-in-termux.git
 ```
-Installing Linux distributions
+or
 ```shell
-pkg install proot-distro
+git clone -b ubuntu18.10 https://github.com/MFDGaming/ubuntu-in-termux.git
 ```
-Catatan: Untuk saat ini mendukung distribusi ini:(Alpine Linux , Arch Linux ,Kali Nethunter , Ubuntu)
+Go to script folder:
 ```shell
-proot-distro install ubuntu
+cd ubuntu-in-termux
 ```
-Untuk login :
+Give execution permission::
 ```shell
-proot-distro login ubuntu
+chmod +x ubuntu.sh
+```
+Run the script:
+```shell
+./ubuntu.sh -y
+```
+Now just start ubuntu:
+```shell
+./startubuntu.sh
 ```
 Perbarui paket sistem: 
 ```shell
-apt-get update && apt-get upgrade -y
+apt-get update -y && apt-get upgrade -y
 ```
 
 INSTALL CCMINER
@@ -65,10 +95,7 @@ Setelah instalasi berhasil, luncurkan aplikasi. Kami akan menjalankan semua peri
 
 2- Instal paket tambahan
  ```shell
- pkg install automake build-essential curl git gnupg openssl nano -y
- ```
-```shell
-apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
+ apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential git nano
 ```
 jika setelah perintah ini Anda mendapatkan kesalahan ini:
 ```shell
@@ -94,9 +121,16 @@ buKa folder ccminer
 ```shell
 cd ccminer
 ```
-4 - Kemudian cd ke folder “ ccminer/ ” dan buat file 'build.sh' , 'configure.sh' dan 'autogen.sh' dapat dieksekusi menggunakan perintah ini dalam satu baris:
+4 - Make Scripts Executables
+
 ```shell
-chmod +x build.sh && chmod +x configure.sh && chmod +x autogen.sh
+chmod +x build.sh
+```
+```shell
+chmod +x configure.sh
+```
+```shell
+chmod +x autogen.sh
 ```
 5- kemudian dapat menjalankan skrip
 ```shell
@@ -108,8 +142,11 @@ nano run
 ```
 Ubah Pool_url , Alamat penambangan dan Nomor utas CPU , untuk menyimpan CTRL+x , tanggapi dengan Y dan tekan Enter
 ./ccminer -a verus -o stratum+tcp://Pool_URL:PORT -u MINING_Address.WORKER_NAME -p x -t THREADS NUMBERS
+
 contoh:
+```shell
 ./ccminer -a verus -o stratum+tcp://verushash.asia.mine.zergpool.com:3300 -u D6Q9is8yhcH5wrazZ12BNZM1ZUuxrZUdpt -p  c=DOGE,mc=VRSC,refcode=74e6aace8dfdab25951017617a86e3fd,ID=iYaco -t 5
+```
 CTRL-X + Y ENTER (save)
 
 untuk Mulai menambang cukup keluarkan perintah
